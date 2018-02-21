@@ -42,7 +42,7 @@ for DEP in ${DEP_PKGS[@]}; do
   echo $APT_DIR
   echo "APT_CACHE_DIR"
   echo $APT_CACHE_DIR
-  dpkg -x $APT_CACHE_DIR/archives/$DEP\_*.deb $APT_DIR
+  dpkg -x $APT_CACHE_DIR/archives/$DEP.deb $APT_DIR
 done
 
 # Install Datadog Agent
