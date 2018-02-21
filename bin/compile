@@ -5,7 +5,7 @@
 set -e
 
 # Debug
-# set -x
+set -x
 
 # Parse and derive params
 BUILD_DIR=$1
@@ -38,11 +38,7 @@ apt-get $APT_OPTIONS -y --force-yes -d install --reinstall --no-install-recommen
 IFS=" " read -a DEP_PKGS <<< $DEPS
 for DEP in ${DEP_PKGS[@]}; do
   echo "Installing $DEP" | indent
-  echo "APT_DIR"
-  echo $APT_DIR
-  echo "APT_CACHE_DIR"
-  echo $APT_CACHE_DIR
-  dpkg -x $APT_CACHE_DIR/archives/$DEP.deb $APT_DIR
+  dpkg -x $APT_CACHE_DIR/archives/$DEP\_*.deb $APT_DIR
 done
 
 # Install Datadog Agent
