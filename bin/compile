@@ -40,7 +40,7 @@ for DEP in ${DEP_PKGS[@]}; do
   echo "Installing $DEP" | indent
   package_paths_pattern="$APT_CACHE_DIR/archives/$DEP\_*.deb"
   package_paths=( $package_paths_pattern )
-  dpkg -x $package_paths[0] $APT_DIR
+  dpkg -x $package_paths $APT_DIR
 done
 
 # Install Datadog Agent
