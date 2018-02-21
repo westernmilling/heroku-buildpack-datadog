@@ -5,7 +5,7 @@
 set -e
 
 # Debug
-set -x
+# set -x
 
 # Parse and derive params
 BUILD_DIR=$1
@@ -38,6 +38,9 @@ apt-get $APT_OPTIONS -y --force-yes -d install --reinstall --no-install-recommen
 IFS=" " read -a DEP_PKGS <<< $DEPS
 for DEP in ${DEP_PKGS[@]}; do
   echo "Installing $DEP" | indent
+  # Sometimes multiple matching packages are found
+  # which blows up on the dpkg command
+  # so grabbing them this way only returns a single filepath
   package_paths_pattern="$APT_CACHE_DIR/archives/$DEP\_*.deb"
   package_paths=( $package_paths_pattern )
   dpkg -x $package_paths $APT_DIR
